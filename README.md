@@ -60,7 +60,6 @@ The system is containerized via Docker and actively hosted on Hugging Face Space
 **Jonathan Eduardo Castilla Zamora**
 *Bionics Engineer | Artificial Intelligence & Data Engineering*
 * **LinkedIn:** [[in/edjonnhycastt](https://www.linkedin.com/in/edjonathancastilla/)]
-* **GitHub:** [Insert your GitHub Profile Link Here]
 
 ---
 *Developed as an applied Artificial Intelligence and Data Engineering portfolio project.*
