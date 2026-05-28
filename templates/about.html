@@ -1,0 +1,105 @@
+{% extends 'index.html' %}
+
+{% block body %}
+<div class="row mb-5 mt-2 justify-content-center">
+    <div class="col-lg-10 text-center">
+        <h3 class="mb-3">About the Document Scanner</h3>
+        <p class="text-secondary lead">An intelligent, end-to-end pipeline for automated text extraction and semantic entity recognition.</p>
+    </div>
+</div>
+
+<div class="row justify-content-center mb-5">
+    <div class="col-lg-10">
+        
+        <div class="card border-0 shadow-lg mb-4" style="background-color: var(--surface-color); border-radius: 12px;">
+            <div class="card-body p-4 p-md-5">
+                <h5 class="mb-3" style="color: var(--text-primary); font-weight: 600;">Project Overview</h5>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                    This application is a custom-developed <strong>Named Entity Recognition (NER)</strong> system built to intelligently extract and categorize structured data from unstructured scanned documents. 
+                </p>
+                <p style="color: var(--text-secondary); line-height: 1.7;">
+                    While the underlying framework is capable of processing complex financial documents such as invoices, shipping bills, and bills of lading, this specific implementation has been optimized for processing <strong>Business Cards</strong> to ensure data privacy and accuracy. By bridging two major fields of Artificial Intelligence—Computer Vision and Natural Language Processing—the application transforms raw pixels into actionable, structured datasets.
+                </p>
+            </div>
+        </div>
+
+        <div class="row g-4 mb-4">
+            <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm" style="background-color: var(--surface-color); border-radius: 12px;">
+                    <div class="card-body p-4">
+                        <h6 class="mb-3" style="color: var(--accent-color); text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">
+                            <i class="bi bi-eye me-2"></i> Computer Vision
+                        </h6>
+                        <p class="small mb-4" style="color: var(--text-secondary); line-height: 1.6;">
+                            The CV module handles document detection, perspective correction (homography), spatial localization of text blocks, and Optical Character Recognition (OCR).
+                        </p>
+                        <ul class="list-unstyled" style="color: var(--text-primary);">
+                            <li class="mb-2"><i class="bi bi-check2 text-success me-2"></i> <strong>OpenCV</strong> - Boundary detection & image warping</li>
+                            <li class="mb-2"><i class="bi bi-check2 text-success me-2"></i> <strong>PyTesseract</strong> - Optical Character Recognition</li>
+                            <li class="mb-2"><i class="bi bi-check2 text-success me-2"></i> <strong>NumPy</strong> - Matrix and array operations</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm" style="background-color: var(--surface-color); border-radius: 12px;">
+                    <div class="card-body p-4">
+                        <h6 class="mb-3" style="color: var(--accent-color); text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">
+                            <i class="bi bi-chat-left-text me-2"></i> Natural Language Processing
+                        </h6>
+                        <p class="small mb-4" style="color: var(--text-secondary); line-height: 1.6;">
+                            The NLP module parses the raw OCR string, executes semantic classification via a custom-trained model, and filters the text using regex rules.
+                        </p>
+                        <ul class="list-unstyled" style="color: var(--text-primary);">
+                            <li class="mb-2"><i class="bi bi-check2 text-success me-2"></i> <strong>spaCy</strong> - Custom Named Entity Recognition</li>
+                            <li class="mb-2"><i class="bi bi-check2 text-success me-2"></i> <strong>Pandas</strong> - Data structuring and alignment</li>
+                            <li class="mb-2"><i class="bi bi-check2 text-success me-2"></i> <strong>Regex (re)</strong> - Lexical cleaning & parsing</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card border-0 shadow-lg" style="background-color: var(--surface-color); border-radius: 12px;">
+            <div class="card-body p-4 p-md-5">
+                <h5 class="mb-4" style="color: var(--text-primary); font-weight: 600;">System Architecture Pipeline</h5>
+                
+                <div class="d-flex align-items-start mb-4">
+                    <div class="badge rounded-pill me-3" style="background-color: rgba(99, 102, 241, 0.2); color: var(--accent-color); padding: 0.6em 1em;">Step 1</div>
+                    <div>
+                        <h6 class="mb-1" style="color: var(--text-primary);">Spatial Acquisition & OCR</h6>
+                        <p class="small m-0" style="color: var(--text-secondary);">The uploaded image is preprocessed to isolate the document. PyTesseract extracts raw text and spatial bounding box coordinates.</p>
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-start mb-4">
+                    <div class="badge rounded-pill me-3" style="background-color: rgba(99, 102, 241, 0.2); color: var(--accent-color); padding: 0.6em 1em;">Step 2</div>
+                    <div>
+                        <h6 class="mb-1" style="color: var(--text-primary);">Semantic Classification (NER)</h6>
+                        <p class="small m-0" style="color: var(--text-secondary);">The raw text is fed into a custom spaCy NER model, which was trained on BIO-tagged datasets to recognize specific entities (Names, Orgs, Phones, Emails).</p>
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-start mb-4">
+                    <div class="badge rounded-pill me-3" style="background-color: rgba(99, 102, 241, 0.2); color: var(--accent-color); padding: 0.6em 1em;">Step 3</div>
+                    <div>
+                        <h6 class="mb-1" style="color: var(--text-primary);">Data Alignment & Grouping</h6>
+                        <p class="small m-0" style="color: var(--text-secondary);">Pandas is utilized to merge the OCR spatial coordinates with the NLP semantic tags via positional indices, grouping multi-word entities together.</p>
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-start">
+                    <div class="badge rounded-pill me-3" style="background-color: rgba(99, 102, 241, 0.2); color: var(--accent-color); padding: 0.6em 1em;">Step 4</div>
+                    <div>
+                        <h6 class="mb-1" style="color: var(--text-primary);">Parsing & Visualization</h6>
+                        <p class="small m-0" style="color: var(--text-secondary);">Entities undergo strict regex parsing to remove noise (e.g., stripping letters from phone numbers). Finally, OpenCV draws labeled bounding boxes over the rectified image for the end-user.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock body %}

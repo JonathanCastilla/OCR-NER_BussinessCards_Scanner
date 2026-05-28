@@ -1,0 +1,85 @@
+/* static/css/style.css */
+
+:root {
+    /* Core Theme Colors */
+    --bg-color: #0f1115;          
+    --surface-color: #1a1d24;     
+    --accent-color: #6366f1;      
+    --accent-hover: #4f46e5;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --border-color: #2e3340;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ------------------------------------- */
+/* Navbar Styling                        */
+/* ------------------------------------- */
+.navbar-custom {
+    background-color: var(--surface-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-custom .navbar-brand h3 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 1.4rem;
+    letter-spacing: -0.5px;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar-custom .navbar-brand h3::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent-color);
+}
+
+.navbar-custom .nav-link {
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.navbar-custom .nav-link:hover,
+.navbar-custom .nav-link.active {
+    color: var(--text-primary);
+}
+
+/* ------------------------------------- */
+/* Main Container Styling                */
+/* ------------------------------------- */
+.main-container {
+    margin-top: 3rem;
+    padding: 2rem;
+    background-color: var(--surface-color);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    flex: 1;
+    margin-bottom: 3rem;
+}
+
+.main-container h3 {
+    font-weight: 300;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-top: 1rem;
+}

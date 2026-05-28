@@ -1,0 +1,103 @@
+{% extends "index.html" %}
+
+{% block body %}
+<div class="row mb-4 mt-2">
+    <div class="col text-center">
+        <h3 class="mb-2">Extraction Results</h3>
+        <p class="text-secondary">Review the perspective-corrected document and the detected entities.</p>
+    </div>
+</div>
+
+<div class="row g-4 mb-5 justify-content-center">
+    <div class="col-md-6">
+        <div class="card h-100 border-0 shadow-lg" style="background-color: var(--surface-color); border-radius: 12px;">
+            <div class="card-header border-0 bg-transparent text-center pt-4 pb-0">
+                <h6 style="color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">
+                    <i class="bi bi-image me-2"></i> Rectified Document
+                </h6>
+            </div>
+            <div class="card-body text-center p-4">
+                <img class="img-fluid rounded" 
+                     src="/static/media/processed_image.jpg" 
+                     alt="Processed Document" 
+                     style="max-height: 400px; object-fit: contain; border: 1px solid var(--border-color); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card h-100 border-0 shadow-lg" style="background-color: var(--surface-color); border-radius: 12px;">
+            <div class="card-header border-0 bg-transparent text-center pt-4 pb-0">
+                <h6 style="color: var(--accent-color); text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">
+                    <i class="bi bi-bounding-box me-2"></i> Detected Entities
+                </h6>
+            </div>
+            <div class="card-body text-center p-4">
+                <img class="img-fluid rounded" 
+                     src="/static/media/bounding_box.jpg" 
+                     alt="Bounding Boxes" 
+                     style="max-height: 400px; object-fit: contain; border: 1px solid var(--border-color); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row justify-content-center mb-5">
+    <div class="col-lg-10">
+        <h5 class="mb-3 ps-2" style="color: var(--text-primary); font-weight: 300;">Structured Data</h5>
+        
+        <div class="card border-0 shadow-lg" style="background-color: var(--surface-color); border-radius: 12px; overflow: hidden;">
+            <div class="table-responsive">
+                <table class="table mb-0 align-middle" style="--bs-table-bg: transparent; --bs-table-border-color: var(--border-color); color: var(--text-primary);">
+                    
+                    <thead style="background-color: rgba(0, 0, 0, 0.25);">
+                        <tr>
+                            <th class="ps-4 py-3" style="width: 25%; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px;">
+                                Entity Tag
+                            </th>
+                            <th class="py-3" style="font-weight: 600; color: var(--text-secondary); text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px;">
+                                Extracted Text
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for key, value_list in results.items() %}
+                            {% if value_list|length > 0 %}
+                                <tr>
+                                    <td class="ps-4 py-3">
+                                        <span class="badge rounded-pill" style="background-color: var(--accent-color); font-size: 0.85rem; padding: 0.5em 1em; font-weight: 500;">
+                                            {{ key }}
+                                        </span>
+                                    </td>
+                                    <td class="py-3" style="font-size: 1.05rem; color: var(--text-primary);">
+                                        {% for text in value_list %}
+                                            <div class="mb-1">{{ text }}</div>
+                                        {% endfor %}
+                                    </td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                        
+                        {% if not results.values() | join('') %}
+                            <tr>
+                                <td colspan="2" class="text-center py-5 text-secondary">
+                                    No entities were confidently detected in this document.
+                                </td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                    
+                </table>
+            </div>
+        </div>
+        
+        <div class="text-center mt-5">
+            <a href="/" class="btn px-5 py-2 shadow" style="background-color: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); font-weight: 600; border-radius: 8px; transition: all 0.3s ease;">
+                Scan Another Document
+            </a>
+        </div>
+        
+    </div>
+</div>
+{% endblock %}
